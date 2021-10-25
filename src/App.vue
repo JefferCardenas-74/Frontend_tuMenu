@@ -43,19 +43,22 @@
   </div>
 
   <MdAgregarCategoria></MdAgregarCategoria>
+  <MdEditarCategoria></MdEditarCategoria>
 </template>
 
 <script>
 import Navbar from "./components/Navbar.vue";
 import Categoria from "./components/Categoria.vue";
 import MdAgregarCategoria from "./components/ModalAgregarCategoria.vue";
+import MdEditarCategoria from "./components/ModalEditarCategoria.vue";
 
 export default {
   name: "App",
   components: {
     Navbar,
     Categoria,
-    MdAgregarCategoria
+    MdAgregarCategoria,
+    MdEditarCategoria
   },
   data() {
     return {

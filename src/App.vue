@@ -1,12 +1,18 @@
 <template>
-  <br>
+  <br />
   <div class="container">
-    <div class="container-opciones"> 
-      <button class="btn btn-primary" type="button"> <i class="fas fa-plus"></i> AGREGAR CATEGORIA</button>
-      <button class="btn btn-primary" type="button"> <i class="fas fa-plus"></i> AGREGAR PRODUCTO</button>
-      <button class="btn btn-primary" type="button"> <i class="fas fa-plus"></i> AGREGAR LISTA DE OPCIONALES</button>
+    <div class="container-opciones">
+      <button class="btn btn-primary" type="button" @click="showModal()">
+        <i class="fas fa-plus"></i> AGREGAR CATEGORIA
+      </button>
+      <button class="btn btn-primary" type="button">
+        <i class="fas fa-plus"></i> AGREGAR PRODUCTO
+      </button>
+      <button class="btn btn-primary" type="button">
+        <i class="fas fa-plus"></i> AGREGAR LISTA DE OPCIONALES
+      </button>
     </div>
-    
+
     <div class="container-titulo">
       <Navbar></Navbar>
     </div>
@@ -28,54 +34,56 @@
               <a href="#">Categoria 4</a>
             </li>
           </ul>
-      </div>
+        </div>
       </div>
       <div class="col-10">
         <Categoria></Categoria>
       </div>
-
     </div>
   </div>
-  
+
+  <MdAgregarCategoria></MdAgregarCategoria>
 </template>
 
 <script>
+import Navbar from "./components/Navbar.vue";
+import Categoria from "./components/Categoria.vue";
+import MdAgregarCategoria from "./components/ModalAgregarCategoria.vue";
 
-import Navbar from './components/Navbar.vue';
-import Categoria from './components/Categoria.vue';
+export default {
+  name: "App",
+  components: {
+    Navbar,
+    Categoria,
+    MdAgregarCategoria
+  },
+  data() {
+    return {
 
-  export default {
-    name: "App",
-    components: {
-      Navbar,
-      Categoria
+      modal : null
+    };
+  },
+  methods: {
+    showModal() {
+      this.modal = new bootstrap.Modal(document.getElementById("mymodal"));
+      this.modal.show();
     },
-    data() {
-      return {
-
-      };
-    },
-    methods: {
-
-    },
-  };
+  },
+};
 </script>
 
 <style>
+.container-opciones {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
 
-  .container-opciones{
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-  }
+.container-opciones button {
+  margin: 15px;
+}
 
-  .container-opciones button{
-    margin: 15px;
-  }
-
-  .container-categorias{
-    display: flex;
-  }
-
-
+.container-categorias {
+  display: flex;
+}
 </style>

@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">CATEGORIA <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">CATEGORIA</a>
                 </li>
 
                 <li class="nav-item">
@@ -27,7 +27,7 @@
     };
 </script>
 
-<style>
+<style scoped>
 
     #navbarNav{
         display: flex;

@@ -12,7 +12,7 @@ const routes = [
     path: '/categorias',
     name: 'categorias',
     component: Categorias
-  },
+  }
 ]
 
 const router = createRouter({

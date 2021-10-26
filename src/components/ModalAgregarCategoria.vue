@@ -1,7 +1,7 @@
 <template>
   <div
     class="modal fade"
-    id="mymodal"
+    id="mymodalAgregarC"
     tabindex="-1"
     role="dialog"
     aria-labelledby="exampleModalLabel"

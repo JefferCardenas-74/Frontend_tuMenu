@@ -1,16 +1,16 @@
 <template>
   <div
-    class="modal fade"
-    id="mymodalEditarC"
+    class="modal fade bd-example-modal-lg"
+    id="mymodalAgregarP"
     tabindex="-1"
     role="dialog"
     aria-labelledby="ModalLabel"
     aria-hidden="true"
   >
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">EDITAR CATEGORIA</h5>
+          <h5 class="modal-title" id="exampleModalLabel">AGREGAR PRODUCTO</h5>
           <button
             type="button"
             class="close"
@@ -22,29 +22,26 @@
         </div>
         <div class="modal-body">
           <form>
-            <div class="form-group">
-              <label for="recipient-name" class="col-form-label"
-                >Categoria:</label
-              >
-              <input type="text" class="form-control" id="recipient-name" />
+            <div class="row">
+            <div class="col">
+              <div>
+                <input id="file" type="file" @change="showImage($event)" />
+                <hr />
+                <div id="preview"></div>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="message-text" class="col-form-label"
-                >Descripción:</label
-              >
-              <textarea class="form-control" id="message-text"></textarea>
+            <div class="col">
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Recipient:</label>
+                <input type="text" class="form-control" id="recipient-name">
+              </div>
             </div>
-            <br />
-            <div>
-              <input id="file" type="file" @change="showImage($event)" />
-              <hr />
-              <div id="preview"></div>
-            </div>
+        </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" id="btn_EditarC" class="btn btn-primary"><i class="far fa-save"></i>
-            Editar Categoria
+          <button type="button" id="btn_AgregarP" class="btn btn-primary"><i class="fas fa-plus"></i>
+            Agregar Categoria
           </button>
         </div>
       </div>

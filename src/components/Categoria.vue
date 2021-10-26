@@ -17,7 +17,7 @@
                         <i class="fas fa-minus-circle"></i> ELIMINAR
                     </button>
 
-                    <button class="btn btn-warning" type="button" @click="showModalEditar()">
+                    <button class="btn btn-warning" type="button" @click="showModalEditarC()">
                         <i class="far fa-edit"></i> EDITAR
                     </button>
 
@@ -106,9 +106,9 @@
             return {};
         },
         methods: {
-            showModalEditar() {
+            showModalEditarC() {
                 this.modal = new bootstrap.Modal(
-                    document.getElementById("mymodalEditar")
+                    document.getElementById("mymodalEditarC")
                 );
                 this.modal.show();
             },

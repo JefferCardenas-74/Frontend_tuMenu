@@ -2,8 +2,8 @@
   <br>
   <div class="container">
     <div class="container-opciones"> 
-      <button class="btn btn-success" type="button"> <i class="fas fa-plus"></i> AGREGAR CATEGORIA</button>
-      <button class="btn btn-success" type="button"> <i class="fas fa-plus"></i> AGREGAR PRODUCTO</button>
+      <button class="btn btn-success" type="button" @click="showModalAgregarC()"> <i class="fas fa-plus"></i> AGREGAR CATEGORIA</button>
+      <button class="btn btn-success" type="button" @click="showModalAgregarP()"> <i class="fas fa-plus"></i> AGREGAR PRODUCTO</button>
       <button class="btn btn-success" type="button"> <i class="fas fa-plus"></i> AGREGAR LISTA DE OPCIONALES</button>
     </div>
     
@@ -30,22 +30,29 @@
 
     </div>
   </div>
-  
+  <MdAgregarCategoria></MdAgregarCategoria>
+  <MdAgregarProducto></MdAgregarProducto>
 </template>
 
 <script>
 
 import Navbar from '../components/Navbar.vue';
 import Categoria from '../components/Categoria.vue';
+import MdAgregarCategoria from '../components/ModalAgregarCategoria.vue';
+import MdAgregarProducto from '../components/ModalAgregarProducto.vue';
 
   export default {
     name: "App",
     components: {
       Navbar,
+      MdAgregarCategoria,
+      MdAgregarProducto,
       Categoria
+
     },
     data() {
       return {
+        modal: null,
         activo : true,
         nombre : ''
       };
@@ -54,7 +61,20 @@ import Categoria from '../components/Categoria.vue';
 
       toggleActive(e){
         this.nombre = e.target.outerText;
-      }
+      },
+      showModalAgregarC() {
+          this.modal = new bootstrap.Modal(
+              document.getElementById("mymodalAgregarC")
+          );
+          this.modal.show();
+      },
+      showModalAgregarP() {
+          this.modal = new bootstrap.Modal(
+              document.getElementById("mymodalAgregarP")
+          );
+          this.modal.show();
+      },
+
 
     },
   };

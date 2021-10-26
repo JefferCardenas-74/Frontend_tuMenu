@@ -1,87 +1,31 @@
 <template>
-  <br>
-  <div class="container">
-    <div class="container-opciones"> 
-      <button class="btn btn-success" type="button"> <i class="fas fa-plus"></i> AGREGAR CATEGORIA</button>
-      <button class="btn btn-success" type="button"> <i class="fas fa-plus"></i> AGREGAR PRODUCTO</button>
-      <button class="btn btn-success" type="button"> <i class="fas fa-plus"></i> AGREGAR LISTA DE OPCIONALES</button>
-    </div>
-    
-    <div class="container-titulo">
-      <Navbar></Navbar>
-    </div>
 
-    <div class="row">
-      <div class="col">
-        <div class="lista-categorias">
-          <div class="list-group">
-            <a href="#" class="list-group-item list-group-item-action active" data-toggle="list" @click="toggleActive($event)" aria-current="true">
-              CATEGORIA 1
-            </a>
-            <a href="#" class="list-group-item list-group-item-action" data-toggle="list" @click="toggleActive($event)">CATEGORIA 2</a>
-            <a href="#" class="list-group-item list-group-item-action" data-toggle="list" @click="toggleActive($event)">CATEGORIA 3</a>
-            <a href="#" class="list-group-item list-group-item-action" data-toggle="list" @click="toggleActive($event)">CATEGORIA 4</a>
-          </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">TU MENU</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <router-link class="nav-link" to="/">Home</router-link>
+        <router-link class="nav-link" to="/categorias">Categorias</router-link>
       </div>
-      </div>
-      <div class="col-10 categorias">
-        <Categoria :nombre="nombre"></Categoria>
-      </div>
-
     </div>
   </div>
+</nav>
+
+<router-view />
   
 </template>
 
 <script>
 
-import Navbar from './components/Navbar.vue';
-import Categoria from './components/Categoria.vue';
-
-  export default {
-    name: "App",
-    components: {
-      Navbar,
-      Categoria
-    },
-    data() {
-      return {
-        activo : true,
-        nombre : ''
-      };
-    },
-    methods: {
-
-      toggleActive(e){
-        this.nombre = e.target.outerText;
-      }
-
-    },
-  };
+export default {
+  
+}
 </script>
 
-<style>
-
-  .container-opciones{
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-  }
-
-  .container-opciones button{
-    margin: 15px;
-  }
-
-  .container-categorias{
-    display: flex;
-  }
-
-  .categorias{
-
-    border: 1px solid;
-    padding: 10px;
-    border-radius: 25px;
-  }
-
+<style scoped>
 
 </style>

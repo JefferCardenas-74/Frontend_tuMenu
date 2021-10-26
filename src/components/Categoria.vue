@@ -17,7 +17,7 @@
                         <i class="fas fa-minus-circle"></i> ELIMINAR
                     </button>
 
-                    <button class="btn btn-warning" type="button">
+                    <button class="btn btn-warning" type="button" @click="showModalEditar()">
                         <i class="far fa-edit"></i> EDITAR
                     </button>
 
@@ -84,21 +84,34 @@
             </div>
         </div>
     </div>
+    <MdEditarCategoria></MdEditarCategoria>
 </template>
+
 
 <script>
     import Producto from './Producto.vue';
+    import MdEditarCategoria from "./ModalEditarCategoria.vue";
 
     export default {
 
         components: {
+            MdEditarCategoria,
             Producto
         },
 
         props: ['nombre'],
 
         data() {
+            modal: null
             return {};
+        },
+        methods: {
+            showModalEditar() {
+                this.modal = new bootstrap.Modal(
+                    document.getElementById("mymodalEditar")
+                );
+                this.modal.show();
+            },
         },
     };
 </script>

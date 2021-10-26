@@ -2,7 +2,7 @@
   <br />
   <div class="container">
     <div class="container-opciones"> 
-      <button class="btn btn-success" type="button"> <i class="fas fa-plus"></i> AGREGAR CATEGORIA</button>
+      <button class="btn btn-success" type="button" @click="showModal()"> <i class="fas fa-plus"></i> AGREGAR CATEGORIA</button>
       <button class="btn btn-success" type="button"> <i class="fas fa-plus"></i> AGREGAR PRODUCTO</button>
       <button class="btn btn-success" type="button"> <i class="fas fa-plus"></i> AGREGAR LISTA DE OPCIONALES</button>
     </div>
@@ -31,14 +31,14 @@
   </div>
 
   <MdAgregarCategoria></MdAgregarCategoria>
-  <MdEditarCategoria></MdEditarCategoria>
+
 </template>
 
 <script>
 import Navbar from "./components/Navbar.vue";
 import Categoria from "./components/Categoria.vue";
 import MdAgregarCategoria from "./components/ModalAgregarCategoria.vue";
-import MdEditarCategoria from "./components/ModalEditarCategoria.vue";
+
 
 export default {
   name: "App",
@@ -46,7 +46,6 @@ export default {
     Navbar,
     Categoria,
     MdAgregarCategoria,
-    MdEditarCategoria
   },
   data() {
     return {

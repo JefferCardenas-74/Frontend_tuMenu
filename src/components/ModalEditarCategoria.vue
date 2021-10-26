@@ -1,10 +1,10 @@
 <template>
   <div
     class="modal fade"
-    id="mymodal"
+    id="mymodalEditar"
     tabindex="-1"
     role="dialog"
-    aria-labelledby="exampleModalLabel"
+    aria-labelledby="ModalLabel"
     aria-hidden="true"
   >
     <div class="modal-dialog" role="document">
@@ -43,7 +43,7 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" id="btn_EditarC" class="btn btn-primary">
+          <button type="button" id="btn_EditarC" class="btn btn-primary"><i class="far fa-save"></i>
             Editar Categoria
           </button>
         </div>

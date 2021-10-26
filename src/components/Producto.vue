@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col">
                 <div class="img">
-                    <img src="../assets/logo.png" alt="Logo de vue">
+                    <img src="../assets/logo.png" alt="Logo de vue" />
                 </div>
             </div>
 
@@ -11,14 +11,13 @@
                 <div class="titulo">
                     <h3>Nombre de producto</h3>
                 </div>
-                <br>
+                <br />
                 <div class="descripcion">
                     <textarea name="txt_descripcion" id="txt_descripcion" cols="50" rows="5" placeholder="Descripcion"
                         class="form-control"></textarea>
                 </div>
-                <br>
+                <br />
                 <div class="cantidad">
-
                     <!-- <div v-if="user">
                         <label for="txt_cantidad">Cantidad</label>
                         <input type="number" id="txt_cantidad" class="form-control" placeholder="0">
@@ -26,9 +25,8 @@
 
                     <div>
                         <label for="txt_precio">Precio</label>
-                        <input type="number" id="txt_precio" name="txt_precio" class="form-control" placeholder="$">
+                        <input type="number" id="txt_precio" name="txt_precio" class="form-control" placeholder="$" />
                     </div>
-
                 </div>
 
                 <hr size="5" align="center" />
@@ -43,7 +41,7 @@
                         </select>
                     </div>
 
-                    <br>
+                    <br />
 
                     <div id="grupo2">
                         <select name="cb_adicionales" id="cb_adicionales" class="form-control">
@@ -57,32 +55,40 @@
             </div>
         </div>
 
-        <br>
+        <br />
 
         <div class="opciones-productos">
-
             <button class="btn btn-danger" type="button">
                 <i class="fas fa-minus-circle"></i> ELIMINAR
             </button>
 
-            <button class="btn btn-warning" type="button">
+            <button class="btn btn-warning" type="button" >
                 <i class="far fa-edit"></i> EDITAR
             </button>
-
         </div>
     </div>
 
-    <br>
-    <br>
+    <br />
+    <br />
 
+    
 </template>
 
 <script>
+    
+
     export default {
+        components: {
+           
+        },
         data() {
             return {
-                user: true
+                user: true,
+                modal: null,
             };
+        },
+        methods: {
+
         },
     };
 </script>

@@ -83,6 +83,7 @@ import MdEditarListaAdicionales from "../components/ModalEditarListaAdicionales.
       );
       this.modal.show();
     },
+<<<<<<< HEAD
     showModalEditarListaA() {
       this.modal = new bootstrap.Modal(
         document.getElementById("mymodalEditarListaA")
@@ -92,6 +93,10 @@ import MdEditarListaAdicionales from "../components/ModalEditarListaAdicionales.
 
   },
 };
+=======
+  };
+  /** Jeffer Cardenas */
+>>>>>>> master
 </script>
 
 <style scoped>

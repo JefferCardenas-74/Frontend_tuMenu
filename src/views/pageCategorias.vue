@@ -1,6 +1,6 @@
 <template>
   <br />
-  <div class="container">
+  <div class="container-fluid">
     <div class="container-opciones">
       <button
         class="btn btn-success"
@@ -43,42 +43,32 @@
             <div class="list-group">
               <a
                 href="#"
-                class="list-group-item list-group-item-action active"
+                v-for="categoria in categorias"
+                :key="categoria"
+                class="list-group-item list-group-item-action"
                 data-toggle="list"
-                @click="toggleActive($event)"
-                aria-current="true"
+                @click="(id = categoria.id), toggleActive($event)"
               >
-                Hamburguesas
+                {{ categoria.nombre }}
               </a>
-              <a
-                href="#"
-                class="list-group-item list-group-item-action"
-                data-toggle="list"
-                @click="toggleActive($event)"
-                >Pizzas</a
-              >
-              <a
-                href="#"
-                class="list-group-item list-group-item-action"
-                data-toggle="list"
-                @click="toggleActive($event)"
-                >Tacos</a
-              >
-              <a
-                href="#"
-                class="list-group-item list-group-item-action"
-                data-toggle="list"
-                @click="toggleActive($event)"
-                >Perros Calientes</a
-              >
+              <!-- <div v-for="categoria in categorias" :key="categoria">
+                <router-link
+                  :to="{ name: 'categoriasId', params: { id: categoria.id } }"
+                  >{{ categoria.nombre }}</router-link
+                >
+              </div> -->
             </div>
           </div>
         </div>
+
         <div class="col-10 categorias">
-          <Categoria :nombre="nombre"></Categoria>
+          <div v-if="mostrar">
+            <Categoria :categoria="categoria" ref="Categoria"></Categoria>
+          </div>
         </div>
       </div>
     </div>
+
 
     <div v-if="contenedorOpcionales">
       <div class="row">
@@ -140,28 +130,38 @@ import MdAgregarCategoria from "../components/ModalAgregarCategoria.vue";
 import MdAgregarProducto from "../components/ModalAgregarProducto.vue";
 import MdAgregarListaAdicionales from "../components/ModalAgregarListaAdicionales.vue";
 import MdAgregarListaOpcionales from "../components/ModalAgregarListaOpcionales.vue";
+import axios from "axios";
 
 export default {
   name: "App",
   components: {
     Navbar,
-    MdAgregarCategoria,
+    Categoria,
+    Opcionales,
+     MdAgregarCategoria,
     MdAgregarProducto,
     MdAgregarListaOpcionales,
     MdAgregarListaAdicionales,
-    Categoria,
-    Opcionales,
   },
   data() {
     return {
       activo: true,
-      nombre: "",
+      id: null,
+      categoria: [
+        {
+          id: null,
+          nombre: "",
+          descripcion: "",
+          urlImg: "",
+        },
+      ],
+      mostrar : false,
       opcional: "",
-      modal: null,
       contenedorCategorias: true,
       contenedorOpcionales: false,
       seleccion1: true,
       seleccion2: false,
+      modal: null
     };
   },
   methods: {
@@ -196,6 +196,21 @@ export default {
       this.modal.show();
     },
 
+      mounted() {
+    this.getCategorias();
+  },
+
+    toggleActive(e) {
+
+      //this.$router.push('/categorias/' + this.id)
+        console.log(this.id);
+        this.getCategoria(this.id);
+        this.mostrar = true;
+        setTimeout(()=>{
+          this.$refs.Categoria.getProductos(this.id)
+        },100)
+    },
+
     toggleActiveOpcional(e) {
       this.opcional = e.target.outerText;
     },
@@ -216,8 +231,27 @@ export default {
         this.seleccion2 = false;
       }
     },
+
+    getCategorias() {
+      axios.get("http://localhost:3000/categorias").then((data) => {
+        console.log(data.data);
+        this.categorias = data.data;
+      });
+    },
+
+    getCategoria(id) {
+      axios.get(`http://localhost:3000/categorias?id=${id}`).then((data) => {
+        console.log(data.data[0]);
+        this.categoria.id = data.data[0].id
+        this.categoria.nombre = data.data[0].nombre;
+        this.categoria.descripcion = data.data[0].descripcion;
+        this.categoria.urlImg = data.data[0].url_imagen_cat;
+      
+      })
+    },
   },
 };
+/**Jeffer Cardenas */
 </script>
 
 <style>
@@ -239,6 +273,8 @@ export default {
   border: 1px solid;
   padding: 10px;
   border-radius: 25px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .contenedor-url {

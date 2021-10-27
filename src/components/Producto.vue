@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
     <div class="jumbotron">
         <div class="row">
             <div class="col">
@@ -50,9 +51,77 @@
                             <option value="1">Aros cebolla -- $2000</option>
                             <option value="1">Papas -- $4000</option>
                         </select>
+=======
+    <div class="row">
+        <div class="col">
+            <div class="jumbotron">
+                <div class="row">
+                    <div class="col">
+                        <div class="img">
+                            <img :src="producto.url_imagen_prod" alt="Logo de vue">
+                        </div>
+                    </div>
+        
+                    <div class="col-7">
+                        <div class="titulo">
+                            <h3>{{ producto.nombre }}</h3>
+                        </div>
+                        <br>
+                        <div class="descripcion">
+                            <p>{{ producto.descripcion }}</p>
+                        </div>
+                        <br>
+                        <div class="cantidad">
+        
+                            <div>
+                                <label for="txt_precio">Precio</label>
+                                <p>$ {{ producto.precio }}</p>
+                            </div>
+        
+                        </div>
+        
+                        <hr size="5" align="center" />
+        
+                        <div class="adicionales">
+                            <div id="grupo1">
+                                <select name="cb_adicionales" id="cb_adicionales" class="form-control">
+                                    <option value="0">Bebidas</option>
+                                    <option value="1">Jugo -- $2000</option>
+                                    <option value="1">Gaseosa -- $2000</option>
+                                    <option value="1">Agua -- $1000</option>
+                                </select>
+                            </div>
+        
+                            <br>
+        
+                            <div id="grupo2">
+                                <select name="cb_adicionales" id="cb_adicionales" class="form-control">
+                                    <option value="0">Harina</option>
+                                    <option value="1">Yuca -- $2000</option>
+                                    <option value="1">Aros cebolla -- $2000</option>
+                                    <option value="1">Papas -- $4000</option>
+                                </select>
+                            </div>
+                        </div>
+>>>>>>> master
                     </div>
                 </div>
+        
+                <br>
+        
+                <div class="opciones-productos">
+        
+                    <button class="btn btn-danger" type="button">
+                        <i class="fas fa-minus-circle"></i> ELIMINAR
+                    </button>
+        
+                    <button class="btn btn-warning" type="button">
+                        <i class="far fa-edit"></i> EDITAR
+                    </button>
+        
+                </div>
             </div>
+<<<<<<< HEAD
         </div>
 
         <br />
@@ -70,6 +139,14 @@
 
     <br />
     <br />
+=======
+        
+        </div>
+    </div>
+    
+    <br>
+    <br>
+>>>>>>> master
 
     <MdEditarProducto></MdEditarProducto>
 </template>
@@ -88,6 +165,7 @@
                 modal: null,
             };
         },
+<<<<<<< HEAD
         methods: {
             showModalEditarP() {
                 this.modal = new bootstrap.Modal(
@@ -96,7 +174,13 @@
                 this.modal.show();
             },
         },
+=======
+        props:{
+            producto : Object
+        }
+>>>>>>> master
     };
+    /** Jeffer cardenas*/
 </script>
 
 <style scoped>
@@ -106,7 +190,7 @@
         background: rgba(0, 0, 0, 0.3);
         display: flex;
         flex-flow: column;
-        width: 800px;
+        width: 90%;
         margin-left: auto;
         margin-right: auto;
     }
@@ -119,6 +203,7 @@
     .img img {
         width: 100%;
         height: 100%;
+        border-radius: 45px;
     }
 
     .form-group {

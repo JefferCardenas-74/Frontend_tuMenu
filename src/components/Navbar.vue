@@ -6,8 +6,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
+            <ul class="navbar-nav" id="menuNav">
+                <li class="nav-item">
                     <a class="nav-link" :class="{ disabled : seleccion1 }" @click='cambioSeccion()'>CATEGORIAS</a>
                 </li>
 
@@ -37,14 +37,14 @@
             }
         }
     };
+    /** Jeffer cardenas */
 </script>
 
 <style scoped>
 
-    #navbarNav{
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
+    #menuNav{
+        margin-left: auto;
+        margin-right: auto;
     }
 
     #navbarNav ul li{

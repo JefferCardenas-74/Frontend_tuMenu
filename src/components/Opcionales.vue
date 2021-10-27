@@ -9,7 +9,7 @@
           <i class="fas fa-minus-circle"></i> ELIMINAR
         </button>
 
-        <button class="btn btn-warning" type="button">
+        <button class="btn btn-warning" type="button" @click="showModalEditarListaO()">
           <i class="far fa-edit"></i> EDITAR
         </button>
       </div>
@@ -51,22 +51,47 @@
         <i class="fas fa-minus-circle"></i> ELIMINAR
       </button>
 
-      <button class="btn btn-warning" type="button">
+      <button class="btn btn-warning" type="button" @click="showModalEditarListaA()">
         <i class="far fa-edit"></i> EDITAR
       </button>
     </div>
 
   </div>
+<MdEditarListaOpcionales></MdEditarListaOpcionales>
+<MdEditarListaAdicionales></MdEditarListaAdicionales>
 </template>
 
 <script>
+import MdEditarListaOpcionales from "../components/ModalEditarListaOpcionales.vue";
+import MdEditarListaAdicionales from "../components/ModalEditarListaAdicionales.vue";
   export default {
     props: ["opcional"],
 
+    components: {
+    MdEditarListaOpcionales,
+    MdEditarListaAdicionales
+    },
+
     data() {
       return {};
+      modal = null
     },
-  };
+    methods: {
+    showModalEditarListaO() {
+      this.modal = new bootstrap.Modal(
+        document.getElementById("mymodalEditarListaO")
+      );
+      this.modal.show();
+    },
+    showModalEditarListaA() {
+      this.modal = new bootstrap.Modal(
+        document.getElementById("mymodalEditarListaA")
+      );
+      this.modal.show();
+    },
+
+  },
+};
 </script>
 
 <style scoped>

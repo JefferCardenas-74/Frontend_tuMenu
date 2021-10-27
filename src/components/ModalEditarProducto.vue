@@ -1,7 +1,7 @@
 <template>
   <div
     class="modal fade bd-example-modal-lg"
-    id="mymodalAgregarP"
+    id="mymodalEditarP"
     tabindex="-1"
     role="dialog"
     aria-labelledby="ModalLabel"
@@ -10,7 +10,7 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">AGREGAR PRODUCTO</h5>
+          <h5 class="modal-title" id="exampleModalLabel">EDITAR PRODUCTO</h5>
           <button
             type="button"
             class="close"
@@ -25,7 +25,7 @@
             <div class="row">
             <div class="col">
               <div>
-                <input id="file" type="file" @change="showImageAgregarProducto($event)" />
+                <input id="file" type="file" @change="showImageEditarProducto($event)" />
                 <hr />
                 <div id="preview"></div>
               </div>
@@ -35,7 +35,7 @@
               <div class="input-group-prepend">
                   <span class="input-group-text" id="inputGroup-sizing-sm">Precio</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="$">
+                <input type="text" v-model="producto.precio" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="$">
               </div>
             <div class="col">
               <div class="form-group">
@@ -51,7 +51,7 @@
 
                 <option>Categoria 2</option>
 
-                <option selected>Elegir Categoria</option>
+                <option selected>+Elegir Categoria</option>
 
               </select>
               </div>
@@ -63,7 +63,7 @@
 
                 <option>Adicional 2</option>
 
-                <option selected>Elegir Adicionales</option>
+                <option selected>+Elegir Adicionales</option>
 
               </select>
               </div>
@@ -72,8 +72,8 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" id="btn_AgregarP" class="btn btn-primary"><i class="fas fa-plus"></i>
-            Agregar Producto
+          <button type="button" id="btn_EditarP" @click="mostrar()" class="btn btn-primary"><i class="far fa-save"></i>
+            Editar Producto
           </button>
         </div>
       </div>
@@ -86,10 +86,14 @@ export default {
   data() {
     return {
       modal: null,
+      precio : null,
+      producto: {
+        precio : 0
+      },
     };
   },
   methods: {
-    showImageAgregarProducto(e) {
+    showImageEditarProducto(e) {
         let reader = new FileReader();
 
         reader.onload = function() {
@@ -104,6 +108,15 @@ export default {
 
         reader.readAsDataURL(e.target.files[0]);
     },
+
+    mostrar(){
+      console.log(this.precio);
+      this.producto= {
+        "precio" : this.precio
+      }
+
+      console.log(JSON.parse(this.producto))
+    }
   },
 };
 </script>

@@ -16,8 +16,15 @@
       >
         <i class="fas fa-plus"></i> AGREGAR PRODUCTO
       </button>
-      <button class="btn btn-success" type="button">
+      <button
+        class="btn btn-success"
+        type="button"
+        @click="showModalAgregarListaO()"
+      >
         <i class="fas fa-plus"></i> AGREGAR LISTA DE OPCIONALES
+      </button>
+      <button class="btn btn-success" type="button" @click="showModalAgregarListaA()">
+        <i class="fas fa-plus"></i> AGREGAR LISTA DE ADICIONALES
       </button>
     </div>
 
@@ -41,28 +48,28 @@
                 @click="toggleActive($event)"
                 aria-current="true"
               >
-                CATEGORIA 1
+                Hamburguesas
               </a>
               <a
                 href="#"
                 class="list-group-item list-group-item-action"
                 data-toggle="list"
                 @click="toggleActive($event)"
-                >CATEGORIA 2</a
+                >Pizzas</a
               >
               <a
                 href="#"
                 class="list-group-item list-group-item-action"
                 data-toggle="list"
                 @click="toggleActive($event)"
-                >CATEGORIA 3</a
+                >Tacos</a
               >
               <a
                 href="#"
                 class="list-group-item list-group-item-action"
                 data-toggle="list"
                 @click="toggleActive($event)"
-                >CATEGORIA 4</a
+                >Perros Calientes</a
               >
             </div>
           </div>
@@ -85,28 +92,21 @@
                 @click="toggleActiveOpcional($event)"
                 aria-current="true"
               >
-                OPCIONAL 1
+                Salsas
               </a>
               <a
                 href="#"
                 class="list-group-item list-group-item-action"
                 data-toggle="list"
                 @click="toggleActiveOpcional($event)"
-                >OPCIONAL 2</a
+                >Bebidas</a
               >
               <a
                 href="#"
                 class="list-group-item list-group-item-action"
                 data-toggle="list"
                 @click="toggleActiveOpcional($event)"
-                >OPCIONAL 3</a
-              >
-              <a
-                href="#"
-                class="list-group-item list-group-item-action"
-                data-toggle="list"
-                @click="toggleActiveOpcional($event)"
-                >OPCIONAL 4</a
+                >Porciones</a
               >
             </div>
           </div>
@@ -128,6 +128,8 @@
   </div>
   <MdAgregarCategoria></MdAgregarCategoria>
   <MdAgregarProducto></MdAgregarProducto>
+  <MdAgregarListaOpcionales></MdAgregarListaOpcionales>
+  <MdAgregarListaAdicionales></MdAgregarListaAdicionales>
 </template>
 
 <script>
@@ -136,6 +138,8 @@ import Categoria from "../components/Categoria.vue";
 import Opcionales from "../components/Opcionales.vue";
 import MdAgregarCategoria from "../components/ModalAgregarCategoria.vue";
 import MdAgregarProducto from "../components/ModalAgregarProducto.vue";
+import MdAgregarListaAdicionales from "../components/ModalAgregarListaAdicionales.vue";
+import MdAgregarListaOpcionales from "../components/ModalAgregarListaOpcionales.vue";
 
 export default {
   name: "App",
@@ -143,6 +147,8 @@ export default {
     Navbar,
     MdAgregarCategoria,
     MdAgregarProducto,
+    MdAgregarListaOpcionales,
+    MdAgregarListaAdicionales,
     Categoria,
     Opcionales,
   },
@@ -172,6 +178,20 @@ export default {
     showModalAgregarP() {
       this.modal = new bootstrap.Modal(
         document.getElementById("mymodalAgregarP")
+      );
+      this.modal.show();
+    },
+
+    showModalAgregarListaO() {
+      this.modal = new bootstrap.Modal(
+        document.getElementById("mymodalAgregarListaO")
+      );
+      this.modal.show();
+    },
+
+    showModalAgregarListaA() {
+      this.modal = new bootstrap.Modal(
+        document.getElementById("mymodalAgregarListaA")
       );
       this.modal.show();
     },

@@ -1,7 +1,7 @@
 <template>
   <div
     class="modal fade"
-    id="mymodalAgregarC"
+    id="mymodalEditarListaO"
     tabindex="-1"
     role="dialog"
     aria-labelledby="exampleModalLabel"
@@ -10,7 +10,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">AGREGAR CATEGORIA</h5>
+          <h5 class="modal-title" id="exampleModalLabel">EDITAR GRUPO DE OPCIONES</h5>
           <button
             type="button"
             class="close"
@@ -24,7 +24,7 @@
           <form>
             <div class="form-group">
               <label for="recipient-name" class="col-form-label"
-                >Categoria:</label
+                >Nombre del grupo:</label
               >
               <input type="text" class="form-control" id="recipient-name" />
             </div>
@@ -34,47 +34,31 @@
               >
               <textarea class="form-control" id="message-text"></textarea>
             </div>
-            <br />
-            <div>
-              <input id="file" type="file" @change="showImageAgregarC($event)" />
-              <hr />
-              <div id="preview"></div>
-            </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" id="btn_AgregarC" class="btn btn-primary">
-            <i class="fas fa-plus"></i>Agregar Categoria
+          <button type="button" id="btn_AgregarListaO" class="btn btn-primary">
+            <i class="far fa-save"></i>Guardar
           </button>
         </div>
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
+
 export default {
+    components: {
+  },
   data() {
     return {
       modal: null,
     };
   },
   methods: {
-    showImageAgregarC(e) {
-        let reader = new FileReader();
 
-        reader.onload = function() {
-          let preview = document.getElementById("preview"),
-            image = document.createElement("img");
-
-          image.src = reader.result;
-
-          preview.innerHTML = "";
-          preview.append(image);
-        };
-
-        reader.readAsDataURL(e.target.files[0]);
-    },
   },
 };
 </script>

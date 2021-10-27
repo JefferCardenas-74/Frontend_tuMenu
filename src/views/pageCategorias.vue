@@ -1,6 +1,6 @@
 <template>
   <br />
-  <div class="container">
+  <div class="container-fluid">
     <div class="container-opciones">
       <button class="btn btn-success" type="button">
         <i class="fas fa-plus"></i> AGREGAR CATEGORIA
@@ -14,7 +14,11 @@
     </div>
 
     <div class="container-titulo">
-      <Navbar @cambioSeccion="cambioSeccion()" :seleccion1="seleccion1" :seleccion2="seleccion2"></Navbar>
+      <Navbar
+        @cambioSeccion="cambioSeccion()"
+        :seleccion1="seleccion1"
+        :seleccion2="seleccion2"
+      ></Navbar>
     </div>
 
     <div v-if="contenedorCategorias">
@@ -22,40 +26,70 @@
         <div class="col">
           <div class="lista-categorias">
             <div class="list-group">
-              <a href="#" class="list-group-item list-group-item-action active" data-toggle="list"
-                @click="toggleActive($event)" aria-current="true">
-                CATEGORIA 1
+              <a
+                href="#"
+                v-for="categoria in categorias"
+                :key="categoria"
+                class="list-group-item list-group-item-action"
+                data-toggle="list"
+                @click="(id = categoria.id), toggleActive($event)"
+              >
+                {{ categoria.nombre }}
               </a>
-              <a href="#" class="list-group-item list-group-item-action" data-toggle="list"
-                @click="toggleActive($event)">CATEGORIA 2</a>
-              <a href="#" class="list-group-item list-group-item-action" data-toggle="list"
-                @click="toggleActive($event)">CATEGORIA 3</a>
-              <a href="#" class="list-group-item list-group-item-action" data-toggle="list"
-                @click="toggleActive($event)">CATEGORIA 4</a>
+              <!-- <div v-for="categoria in categorias" :key="categoria">
+                <router-link
+                  :to="{ name: 'categoriasId', params: { id: categoria.id } }"
+                  >{{ categoria.nombre }}</router-link
+                >
+              </div> -->
             </div>
           </div>
         </div>
+
         <div class="col-10 categorias">
-          <Categoria :nombre="nombre"></Categoria>
+          <div v-if="mostrar">
+            <Categoria :categoria="categoria" ref="Categoria"></Categoria>
+          </div>
         </div>
       </div>
     </div>
+
 
     <div v-if="contenedorOpcionales">
       <div class="row">
         <div class="col">
           <div class="lista-categorias">
             <div class="list-group">
-              <a href="#" class="list-group-item list-group-item-action active" data-toggle="list"
-                @click="toggleActiveOpcional($event)" aria-current="true">
+              <a
+                href="#"
+                class="list-group-item list-group-item-action active"
+                data-toggle="list"
+                @click="toggleActiveOpcional($event)"
+                aria-current="true"
+              >
                 OPCIONAL 1
               </a>
-              <a href="#" class="list-group-item list-group-item-action" data-toggle="list"
-                @click="toggleActiveOpcional($event)">OPCIONAL 2</a>
-              <a href="#" class="list-group-item list-group-item-action" data-toggle="list"
-                @click="toggleActiveOpcional($event)">OPCIONAL 3</a>
-              <a href="#" class="list-group-item list-group-item-action" data-toggle="list"
-                @click="toggleActiveOpcional($event)">OPCIONAL 4</a>
+              <a
+                href="#"
+                class="list-group-item list-group-item-action"
+                data-toggle="list"
+                @click="toggleActiveOpcional($event)"
+                >OPCIONAL 2</a
+              >
+              <a
+                href="#"
+                class="list-group-item list-group-item-action"
+                data-toggle="list"
+                @click="toggleActiveOpcional($event)"
+                >OPCIONAL 3</a
+              >
+              <a
+                href="#"
+                class="list-group-item list-group-item-action"
+                data-toggle="list"
+                @click="toggleActiveOpcional($event)"
+                >OPCIONAL 4</a
+              >
             </div>
           </div>
         </div>
@@ -65,8 +99,8 @@
       </div>
     </div>
 
-    <br>
-    <br>
+    <br />
+    <br />
 
     <div class="contenedor-url">
       <div class="url">
@@ -77,96 +111,134 @@
 </template>
 
 <script>
-  import Navbar from "../components/Navbar.vue";
-  import Categoria from "../components/Categoria.vue";
-  import Opcionales from "../components/Opcionales.vue";
+import Navbar from "../components/Navbar.vue";
+import Categoria from "../components/Categoria.vue";
+import Opcionales from "../components/Opcionales.vue";
+import axios from "axios";
 
-  export default {
-    name: "App",
-    components: {
-      Navbar,
-      Categoria,
-      Opcionales,
+export default {
+  name: "App",
+  components: {
+    Navbar,
+    Categoria,
+    Opcionales,
+  },
+  data() {
+    return {
+      activo: true,
+      id: null,
+      categoria: [
+        {
+          id: null,
+          nombre: "",
+          descripcion: "",
+          urlImg: "",
+        },
+      ],
+      mostrar : false,
+      opcional: "",
+      contenedorCategorias: true,
+      contenedorOpcionales: false,
+      seleccion1: true,
+      seleccion2: false,
+      categorias: null
+    };
+  },
+
+  mounted() {
+    this.getCategorias();
+  },
+
+  methods: {
+    toggleActive(e) {
+
+      //this.$router.push('/categorias/' + this.id)
+        console.log(this.id);
+        this.getCategoria(this.id);
+        this.mostrar = true;
+        setTimeout(()=>{
+          this.$refs.Categoria.getProductos(this.id)
+        },100)
     },
-    data() {
-      return {
-        activo: true,
-        nombre: "",
-        opcional: "",
-        contenedorCategorias: true,
-        contenedorOpcionales: false,
-        seleccion1: true,
-        seleccion2: false,
-      };
+
+    toggleActiveOpcional(e) {
+      this.opcional = e.target.outerText;
     },
-    methods: {
-      toggleActive(e) {
-        this.nombre = e.target.outerText;
-      },
 
-      toggleActiveOpcional(e) {
-        this.opcional = e.target.outerText;
-      },
-
-      cambioSeccion() {
-        if (this.contenedorCategorias && this.contenedorOpcionales == false) {
-
-          this.contenedorCategorias = false;
-          this.contenedorOpcionales = true;
-          this.seleccion1 = false;
-          this.seleccion2 = true;
-
-        } else if (
-
-          this.contenedorCategorias == false &&
-          this.contenedorOpcionales
-
-        ) {
-
-          this.contenedorCategorias = true;
-          this.contenedorOpcionales = false;
-          this.seleccion1 = true;
-          this.seleccion2 = false;
-
-        }
-      },
+    cambioSeccion() {
+      if (this.contenedorCategorias && this.contenedorOpcionales == false) {
+        this.contenedorCategorias = false;
+        this.contenedorOpcionales = true;
+        this.seleccion1 = false;
+        this.seleccion2 = true;
+      } else if (
+        this.contenedorCategorias == false &&
+        this.contenedorOpcionales
+      ) {
+        this.contenedorCategorias = true;
+        this.contenedorOpcionales = false;
+        this.seleccion1 = true;
+        this.seleccion2 = false;
+      }
     },
-  };
+
+    getCategorias() {
+      axios.get("http://localhost:3000/categorias").then((data) => {
+        console.log(data.data);
+        this.categorias = data.data;
+      });
+    },
+
+    getCategoria(id) {
+      axios.get(`http://localhost:3000/categorias?id=${id}`).then((data) => {
+        console.log(data.data[0]);
+        this.categoria.id = data.data[0].id
+        this.categoria.nombre = data.data[0].nombre;
+        this.categoria.descripcion = data.data[0].descripcion;
+        this.categoria.urlImg = data.data[0].url_imagen_cat;
+      
+      })
+    },
+  },
+};
+/**Jeffer Cardenas */
 </script>
 
 <style>
-  .container-opciones {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-  }
+.container-opciones {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
 
-  .container-opciones button {
-    margin: 15px;
-  }
+.container-opciones button {
+  margin: 15px;
+}
 
-  .container-categorias {
-    display: flex;
-  }
+.container-categorias {
+  display: flex;
+}
 
-  .categorias {
-    border: 1px solid;
-    padding: 10px;
-    border-radius: 25px;
-  }
+.categorias {
+  border: 1px solid;
+  padding: 10px;
+  border-radius: 25px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  .contenedor-url{
-    display: flex;
-    justify-content: center;
-    flex-flow: row wrap;
-  }
+.contenedor-url {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
 
-  .url{
-    border: 1px solid;
-    padding: 15px;
-  }
+.url {
+  border: 1px solid;
+  padding: 15px;
+}
 
-  .url p{
-    font-weight: bold;
-  }
+.url p {
+  font-weight: bold;
+}
 </style>

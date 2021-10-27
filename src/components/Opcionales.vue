@@ -67,6 +67,7 @@
       return {};
     },
   };
+  /** Jeffer Cardenas */
 </script>
 
 <style scoped>

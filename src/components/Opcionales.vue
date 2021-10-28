@@ -1,7 +1,7 @@
 <template>
   <div class="contenedor-opcionales">
     <div class="header">
-      <h2>{{ opcional }}</h2>
+      <h2>{{ opcional.nombre }}</h2>
 
       <div class="opciones-opcionales">
 
@@ -18,29 +18,14 @@
     <br>
 
     <div class="descripcion">
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
-        reprehenderit quia eaque! Debitis magni dignissimos quaerat autem,
-        quibusdam in nam laborum, modi maxime impedit ratione quis temporibus
-        fuga eum ducimus?
-      </p>
+      <p>{{ opcional.descripcion }}</p>
     </div>
 
     <div class="adicionales">
-      <div class="adicional">
-        <h5>Papas</h5>
+      <div class="adicional" v-for="adicional in adicionales" :key="adicional">
+        <h5>{{ adicional.nombre }}</h5>
         <br>
-        <p>$ 3000</p>
-      </div>
-      <div class="adicional">
-        <h5>Gaseosa</h5>
-        <br>
-        <p>$ 2000</p>
-      </div>
-      <div class="adicional">
-        <h5>Salsa</h5>
-        <br>
-        <p>$ 1000</p>
+        <p>$ {{adicional.precio}} </p>
       </div>
     </div>
 
@@ -60,12 +45,27 @@
 </template>
 
 <script>
+import axios from "axios";
+
   export default {
-    props: ["opcional"],
+    props: {
+      opcional: Object
+    },
 
     data() {
-      return {};
+      return {
+        adicionales: null
+      };
     },
+    methods:{
+      getAdicionales(id){
+        axios.get(`http://localhost:3000/adicionales?idOpcionales=${id}`)
+        .then((data)=>{
+          this.adicionales = data.data;
+          console.log(this.adicionales)
+        })
+      }
+    }
   };
   /** Jeffer Cardenas */
 </script>

@@ -52,7 +52,7 @@
                             <a href='#producto' class="btn btn-link nav-link btn-block text-left" type="button"
                                 data-toggle="collapse" :data-target="'#' + collapseOne + producto.id"
                                 aria-expanded="true" aria-controls="collapseOne"
-                                @click="(idProducto = producto.id), getProducto()">
+                                @click="getProducto()">
                                 {{ producto.nombre }}
                             </a>
                         </h2>
@@ -95,7 +95,6 @@
             return {
                 productosProxy: {},
                 productos: [],
-                idProducto: null,
                 collapseOne: "collapseOne",
                 producto: {},
                 mostrar: false,

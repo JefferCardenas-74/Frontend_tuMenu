@@ -4,19 +4,19 @@
         "id": 1,
         "nombre": "Hamburguesas",
         "descripcion": "Esta categoría cuenta con las mejores hamburguesas",
-        "url_imagen_cat": "/img/burger.13c814f5.jpg"
+        "url_imagen_cat": "https://images.pexels.com/photos/580612/pexels-photo-580612.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
     },
     {
         "id": 2,
         "nombre": "Pizzas",
         "descripcion": "Esta categoría cuenta con las mejores pizzas ",
-        "url_imagen_cat": "/img/pizzas.04c29eb9.jpg"
+        "url_imagen_cat": "https://images.pexels.com/photos/1653877/pexels-photo-1653877.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
     },
     {
         "id": 3,
         "nombre": "Postres",
         "descripcion": "Esta categoría cuenta con los mejores postres",
-        "url_imagen_cat": "/img/postres.2694c6dc.jpg"
+        "url_imagen_cat": "https://images.pexels.com/photos/9589802/pexels-photo-9589802.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
     }
   ],
   
@@ -27,7 +27,7 @@
         "nombre": "Hamburguesa sencilla",
         "descripcion": "Ingredientes: carne o pollo, lechuga, queso, salsa",
         "precio" : "9000",
-        "url_imagen_prod": "/img/Hsencilla.334a2003.jpg",
+        "url_imagen_prod": "https://images.pexels.com/photos/1639565/pexels-photo-1639565.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
         "categoria_producto" : 1
     },
 
@@ -36,7 +36,7 @@
         "nombre": "Hamburguesa Mexicana",
         "descripcion": "Ingredientes: carne o pollo, lechuga, queso, salsa, jalapeños",
         "precio" : "10000",
-        "url_imagen_prod": "/img/Hmexicana.35cdfd78.jpg",
+        "url_imagen_prod": "https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
         "categoria_producto" : 1
     },
 
@@ -45,7 +45,7 @@
         "nombre": "Pizza peperoni",
         "descripcion": "Ingredientes: doble queso, peperoni",
         "precio" : "6000",
-        "url_imagen_prod": "/img/Psencilla.dcc0f0af.jpg",
+        "url_imagen_prod": "https://images.pexels.com/photos/9957551/pexels-photo-9957551.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
         "categoria_producto" : 2
     },
 
@@ -54,7 +54,7 @@
         "nombre": "Pizza Mexicana",
         "descripcion": "Ingredientes: doble queso, carne, chile",
         "precio" : "7000",
-        "url_imagen_prod": "/img/Pmexicana.7ec88e35.jpg",
+        "url_imagen_prod": "https://images.pexels.com/photos/6761057/pexels-photo-6761057.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
         "categoria_producto" : 2
     },
 
@@ -63,7 +63,7 @@
         "nombre": "Torta de manzana",
         "descripcion": "Ingredientes: crema de chocolate, trozos de manzana",
         "precio" : "3000",
-        "url_imagen_prod": "/img/Tmanzana.e43650d5.jpg",
+        "url_imagen_prod": "https://images.pexels.com/photos/9999969/pexels-photo-9999969.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
         "categoria_producto" : 3
     },
 
@@ -72,7 +72,7 @@
         "nombre": "Torta de queso",
         "descripcion": "Ingredientes: Queso, covertura de chocolate",
         "precio" : "7000",
-        "url_imagen_prod": "/img/Tqueso.eeacca4d.jpg",
+        "url_imagen_prod": "https://images.pexels.com/photos/5419180/pexels-photo-5419180.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
         "categoria_producto" : 3
     }
 

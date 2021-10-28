@@ -2,14 +2,17 @@
   <br />
   <div class="container-fluid">
     <div class="container-opciones">
-      <button class="btn btn-success" type="button">
+      <button class="btn btn-success" type="button" @click="showModalAgregarC()">
         <i class="fas fa-plus"></i> AGREGAR CATEGORIA
       </button>
-      <button class="btn btn-success" type="button">
+      <button class="btn btn-success" type="button" @click="showModalAgregarP()">
         <i class="fas fa-plus"></i> AGREGAR PRODUCTO
       </button>
-      <button class="btn btn-success" type="button">
+      <button class="btn btn-success" type="button" @click="showModalAgregarListaO()">
         <i class="fas fa-plus"></i> AGREGAR LISTA DE OPCIONALES
+      </button>
+      <button class="btn btn-success" type="button" @click="showModalAgregarListaA()">
+        <i class="fas fa-plus"></i> AGREGAR LISTA DE ADICIONALES
       </button>
     </div>
 
@@ -48,10 +51,21 @@
         <div class="col">
           <div class="lista-categorias">
             <div class="list-group">
+<<<<<<< HEAD
               <a href="#" v-for="opcion in opcionales" :key="opcion" class="list-group-item list-group-item-action"
                 data-toggle="list" @click="(idOpcional = opcion.id), toggleActiveOpcional($event)">
                 {{ opcion.nombre }}
               </a>
+=======
+              <a href="#" class="list-group-item list-group-item-action active" data-toggle="list"
+                @click="toggleActiveOpcional($event)" aria-current="true">
+                Salsas
+              </a>
+              <a href="#" class="list-group-item list-group-item-action" data-toggle="list"
+                @click="toggleActiveOpcional($event)">Bebidas</a>
+              <a href="#" class="list-group-item list-group-item-action" data-toggle="list"
+                @click="toggleActiveOpcional($event)">Porciones</a>
+>>>>>>> master
             </div>
           </div>
         </div>
@@ -77,13 +91,28 @@
       </div>
     </div>
   </div>
+  <MdAgregarCategoria></MdAgregarCategoria>
+  <MdAgregarProducto></MdAgregarProducto>
+  <MdAgregarListaOpcionales></MdAgregarListaOpcionales>
+  <MdAgregarListaAdicionales></MdAgregarListaAdicionales>
 </template>
 
 <script>
+<<<<<<< HEAD
   import Navbar from "../components/Navbar.vue";
   import Categoria from "../components/Categoria.vue";
   import Opcionales from "../components/Opcionales.vue";
   import axios from "axios";
+=======
+  import axios from "axios";
+  import Navbar from "../components/Navbar.vue";
+  import Categoria from "../components/Categoria.vue";
+  import Opcionales from "../components/Opcionales.vue";
+  import MdAgregarCategoria from "../components/ModalAgregarCategoria.vue";
+  import MdAgregarProducto from "../components/ModalAgregarProducto.vue";
+  import MdAgregarListaAdicionales from "../components/ModalAgregarListaAdicionales.vue";
+  import MdAgregarListaOpcionales from "../components/ModalAgregarListaOpcionales.vue";
+>>>>>>> master
 
   export default {
     name: "App",
@@ -91,12 +120,22 @@
       Navbar,
       Categoria,
       Opcionales,
+<<<<<<< HEAD
+=======
+      MdAgregarCategoria,
+      MdAgregarProducto,
+      MdAgregarListaOpcionales,
+      MdAgregarListaAdicionales,
+>>>>>>> master
     },
     data() {
       return {
         activo: true,
         id: null,
+<<<<<<< HEAD
         idOpcional: null,
+=======
+>>>>>>> master
         categoria: [
           {
             id: null,
@@ -105,6 +144,7 @@
             urlImg: "",
           },
         ],
+<<<<<<< HEAD
         opcional: [
           {
             id: null,
@@ -113,27 +153,71 @@
           },
         ],
         mostrar: false,
+=======
+        mostrar: false,
+        opcional: "",
+>>>>>>> master
         contenedorCategorias: true,
         contenedorOpcionales: false,
         seleccion1: true,
         seleccion2: false,
+<<<<<<< HEAD
         mostrarO: false,
         categorias: null,
         opcionales: null,
+=======
+        modal: null,
+        categorias: null,
+>>>>>>> master
       };
     },
 
     mounted() {
       this.getCategorias();
+<<<<<<< HEAD
       this.getOpcionales();
     },
 
     methods: {
+=======
+    },
+
+    methods: {
+
+      showModalAgregarC() {
+        this.modal = new bootstrap.Modal(
+          document.getElementById("mymodalAgregarC")
+        );
+        this.modal.show();
+      },
+      showModalAgregarP() {
+        this.modal = new bootstrap.Modal(
+          document.getElementById("mymodalAgregarP")
+        );
+        this.modal.show();
+      },
+
+      showModalAgregarListaO() {
+        this.modal = new bootstrap.Modal(
+          document.getElementById("mymodalAgregarListaO")
+        );
+        this.modal.show();
+      },
+
+      showModalAgregarListaA() {
+        this.modal = new bootstrap.Modal(
+          document.getElementById("mymodalAgregarListaA")
+        );
+        this.modal.show();
+      },
+
+>>>>>>> master
       toggleActive(e) {
         //this.$router.push('/categorias/' + this.id)
         console.log(this.id);
         this.getCategoria(this.id);
         this.mostrar = true;
+<<<<<<< HEAD
         setTimeout(() => {
           this.$refs.Categoria.getProductos(this.id);
         }, 100);
@@ -145,6 +229,17 @@
         setTimeout(() => {
           this.$refs.Opcionales.getAdicionales(this.idOpcional)
         }, 100);
+=======
+        
+        setTimeout(() => {
+            this.$refs.Categoria.getProductos(this.id);
+        }, 100);
+      
+      },
+
+      toggleActiveOpcional(e) {
+        this.opcional = e.target.outerText;
+>>>>>>> master
       },
 
       cambioSeccion() {
@@ -180,6 +275,7 @@
           this.categoria.urlImg = data.data[0].url_imagen_cat;
         });
       },
+<<<<<<< HEAD
 
       getOpcionales() {
         axios.get("http://localhost:3000/opcionales").then((data) => {
@@ -196,6 +292,8 @@
           this.opcional.descripcion = data.data[0].descripcion;
         });
       },
+=======
+>>>>>>> master
     },
   };
 /**Jeffer Cardenas */
@@ -217,6 +315,10 @@
   }
 
   .categorias {
+<<<<<<< HEAD
+=======
+    border: 1px solid;
+>>>>>>> master
     padding: 10px;
     border-radius: 25px;
     margin-left: auto;

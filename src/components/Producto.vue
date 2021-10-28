@@ -61,7 +61,7 @@
                         <i class="fas fa-minus-circle"></i> ELIMINAR
                     </button>
         
-                    <button class="btn btn-warning" type="button">
+                    <button class="btn btn-warning" type="button" @click="showModalEditarP()">
                         <i class="far fa-edit"></i> EDITAR
                     </button>
         
@@ -74,18 +74,36 @@
     <br>
     <br>
 
+    <MdEditarProducto></MdEditarProducto>
 </template>
 
 <script>
+    import MdEditarProducto from "./ModalEditarProducto.vue";
+
     export default {
+        components: {
+            MdEditarProducto
+           
+        },
         data() {
             return {
-                user: true
+                user: true,
+                modal: null,
             };
         },
-        props:{
-            producto : Object
-        }
+
+        props: {
+            producto: Object,
+        },
+
+        methods: {
+            showModalEditarP() {
+                this.modal = new bootstrap.Modal(
+                    document.getElementById("mymodalEditarP")
+                );
+                this.modal.show();
+            },
+        },
     };
     /** Jeffer cardenas*/
 </script>

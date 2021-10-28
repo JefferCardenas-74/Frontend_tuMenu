@@ -15,7 +15,7 @@
                         <i class="fas fa-minus-circle"></i> ELIMINAR
                     </button>
 
-                    <button class="btn btn-warning" type="button">
+                    <button class="btn btn-warning" type="button" @click="showModalEditarC()">
                         <i class="far fa-edit"></i> EDITAR
                     </button>
                 </div>
@@ -75,15 +75,19 @@
             </div>
         </div>
     </div>
+    <MdEditarCategoria></MdEditarCategoria>
 </template>
 
+
 <script>
-    import Producto from "./Producto.vue";
+    import Producto from './Producto.vue';
+    import MdEditarCategoria from "./ModalEditarCategoria.vue";
     import axios from "axios";
 
     export default {
         components: {
-            Producto,
+            MdEditarCategoria,
+            Producto
         },
 
         props: {
@@ -98,6 +102,7 @@
                 collapseOne: "collapseOne",
                 producto: {},
                 mostrar: false,
+                modal: null
                 //   prod: {
                 //     "id": null,
                 //     "nombre": "",
@@ -141,6 +146,13 @@
                     this.producto = data.data;
                     this.mostrar = true;
                 });
+            },
+
+            showModalEditarC() {
+                this.modal = new bootstrap.Modal(
+                    document.getElementById("mymodalEditarC")
+                );
+                this.modal.show();
             },
         },
     };

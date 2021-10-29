@@ -46,13 +46,13 @@
     <div class="row">
         <div class="col">
             <div class="accordion" id="accordionExample">
-                <div class="card" v-for="producto in productos" :key="producto.key">
+                <div class="card" v-for="producto in productos" :key="producto">
                     <div class="card-header" id="headingOne">
                         <h2 class="mb-0">
                             <a href='#producto' class="btn btn-link nav-link btn-block text-left" type="button"
                                 data-toggle="collapse" :data-target="'#' + collapseOne + producto.id"
                                 aria-expanded="true" aria-controls="collapseOne"
-                                @click="getProducto()">
+                                @click="(idProducto = producto.id), getProducto(this.idProducto)">
                                 {{ producto.nombre }}
                             </a>
                         </h2>
@@ -92,7 +92,7 @@
 
         props: {
             categoria: Object,
-            producto: Object,
+            //producto: Object,
         },
 
         data() {
@@ -102,48 +102,24 @@
                 collapseOne: "collapseOne",
                 producto: {},
                 mostrar: false,
-                modal: null
-                //   prod: {
-                //     "id": null,
-                //     "nombre": "",
-                //     "descripcion": "",
-                //     "precio": "",
-                //     "url_imagen_prod": "",
-                //     "categoria_producto": null,
-                //   },
+                modal: null,
+                idProducto : null
             };
         },
-
-        // mounted() {
-        //     this.getProductos(this.$route.params.id);
-        // },
 
         methods: {
             getProductos(id) {
                 axios
                     .get(`http://localhost:3000/productos?categoria_producto=${id}`)
                     .then((data) => {
-                        this.productosProxy = data.data;
-
-                        //   this.productosProxy.map((item, i) => {
-
-                        //     this.prod.id = item.id;
-                        //     this.prod.nombre = item.nombre;
-                        //     this.prod.descripcion = item.descripcion;
-                        //     this.prod.precio = item.precio;
-                        //     this.prod.url_imagen_prod = item.url_imagen_prod;
-                        //     this.prod.categoria_producto = item.categoria_producto;
-
-                        //     this.productos.push(this.prod);
-                        //   });
-
-                        this.productos = this.productosProxy.map((item) => item);
+                        this.productos = data.data;
                     });
             },
 
             getProducto(id) {
-                axios.get(`http://localhost:3000/productos?id=${id}`).then((data) => {
-                    this.producto = data.data;
+                axios.get(`http://localhost:3000/productos?id=${id}`)
+                .then((data) => {
+                    this.product = data.data;
                     this.mostrar = true;
                 });
             },

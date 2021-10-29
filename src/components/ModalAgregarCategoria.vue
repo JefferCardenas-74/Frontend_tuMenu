@@ -59,6 +59,9 @@ export default {
       modal: null,
     };
   },
+  props:{
+    categorias : Object
+  },
   methods: {
     showImageAgregarC(e) {
         let reader = new FileReader();

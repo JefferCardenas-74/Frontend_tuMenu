@@ -47,23 +47,17 @@
               <div>
               <select class="form-control" name="cbElegirCategoria">
 
-                <option>Categoria 1</option>
-
-                <option>Categoria 2</option>
-
-                <option selected>Elegir Categoria</option>
+                <option class="form-control" v-for="categoria in categorias" :key="categoria" :value="categoria.id">
+                  {{ categoria.nombre }}
+                </option>
 
               </select>
               </div>
               <br>
               <div>
-              <select class="form-control" name="cbElegiradicionales">
+              <select class="form-control">
 
-                <option>Adicional 1</option>
-
-                <option>Adicional 2</option>
-
-                <option selected>Elegir Adicionales</option>
+                <option class="form-control" v-for="adicional in adicionales" :key="adicional" :value="adicional.id" >{{ adicional.nombre }}</option>
 
               </select>
               </div>
@@ -72,7 +66,7 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" id="btn_AgregarP" class="btn btn-primary"><i class="fas fa-plus"></i>
+          <button type="button" id="btn_AgregarP" class="btn btn-primary" @click="guardar()"><i class="fas fa-plus"></i>
             Agregar Producto
           </button>
         </div>
@@ -87,6 +81,10 @@ export default {
     return {
       modal: null,
     };
+  },
+  props:{
+    categorias : Object,
+    adicionales : Object
   },
   methods: {
     showImageAgregarProducto(e) {
@@ -104,6 +102,10 @@ export default {
 
         reader.readAsDataURL(e.target.files[0]);
     },
+
+    guardar(){
+      alert("Se Guardo con exito");
+    }
   },
 };
 </script>

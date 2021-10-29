@@ -28,26 +28,17 @@
                         </div>
         
                         <hr size="5" align="center" />
-        
+                        
+                        <div class="form-group d-flex justify-content-center mb-3">
+                            <button class="btn btn-primary" @click="getAdicionalesPro(producto.id)" >Listar Adicionales</button>
+                        </div>
+
                         <div class="adicionales">
-                            <div id="grupo1">
-                                <select name="cb_adicionales" id="cb_adicionales" class="form-control">
-                                    <option value="0">Bebidas</option>
-                                    <option value="1">Jugo -- $2000</option>
-                                    <option value="1">Gaseosa -- $2000</option>
-                                    <option value="1">Agua -- $1000</option>
-                                </select>
-                            </div>
-        
-                            <br>
-        
-                            <div id="grupo2">
-                                <select name="cb_adicionales" id="cb_adicionales" class="form-control">
-                                    <option value="0">Harina</option>
-                                    <option value="1">Yuca -- $2000</option>
-                                    <option value="1">Aros cebolla -- $2000</option>
-                                    <option value="1">Papas -- $4000</option>
-                                </select>
+                            <div class="form-check" v-for="adicional in adicionales" :key="adicional">
+                                
+                                <input type="checkbox" class="form-check-input" value="" :id="'check' + adicional.id" @click="check(adicional.precio, $event)">
+                                <label for="check1">{{ adicional.nombre }} -- {{ adicional.precio }}</label>
+
                             </div>
                         </div>
                     </div>
@@ -78,6 +69,7 @@
 </template>
 
 <script>
+import axios from 'axios';
     import MdEditarProducto from "./ModalEditarProducto.vue";
 
     export default {
@@ -89,6 +81,8 @@
             return {
                 user: true,
                 modal: null,
+                adicionales : [],
+                precio: 0
             };
         },
 
@@ -103,6 +97,27 @@
                 );
                 this.modal.show();
             },
+
+            getAdicionalesPro(id){
+                axios.get(`http://localhost:3000/adicionalesProducto?idProducto=${id}`)
+                .then((data) => {
+
+                    this.adicionales = data.data;
+                    console.log(this.adicionales);
+                })
+            },
+
+            check(precio, e){
+                if(e.target.checked){
+                    
+                    this.precio = this.producto.precio;
+                    this.producto.precio += precio;
+                }
+
+                if(e.target.checked == false){
+                    this.producto.precio = this.precio;
+                }
+            }
         },
     };
     /** Jeffer cardenas*/
